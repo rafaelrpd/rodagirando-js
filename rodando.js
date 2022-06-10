@@ -3,7 +3,7 @@ const fps = 60;
 // milisegundos por frame
 const mpf = 1000/fps;
 // aceleração constante
-var aceleracao = Math.pow(5/mpf, 2);
+var aceleracao = 5/Math.pow(mpf,2);
 // velocidade inicial
 var velocidadeInicial = 0;
 // velocidade final
@@ -30,7 +30,7 @@ function desenhar() {
         // translate o canvas, mudando as coordenadas (0,0) para o centro do canvas
         ctx.translate(canvasWidth / 2, canvasHeight / 2);
         // rotate o canvas, mudando a diposição em radianos da movimentação
-        ctx.rotate(this.velocidadeFinal * (Math.PI / 180));
+        ctx.rotate(this.velocidadeFinal);
         console.log(this.velocidadeFinal);
         // definir a cor do retângulo que será criado, bem como deixá-lo transparente
         ctx.fillStyle = "rgba(61, 165, 72, 0.4)";
@@ -43,7 +43,7 @@ function desenhar() {
 // atualizar o canvas e chamar a recursividade
 function atualizar() {
     // mudar o ângulo inicial (aceleração em radianos/segundo^2)
-    this.velocidadeFinal += this.aceleracao;
+    this.velocidadeFinal += aceleracao * mpf;
     // desenhar o objeto com o novo ângulo e iniciar a recursividade
     desenhar();
 }
