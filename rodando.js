@@ -1,7 +1,8 @@
-const fps = 60;
-const mpf = 1000/fps;
-var aceleracao = 5/Math.pow(mpf,2);
-var velocidadeFinal = 0;
+const fps = 60; // quadros por segundo;
+const mpf = 1000/fps; // mili segundos por frame(16,66);
+var aceleracao = 5/Math.pow(mpf,2); // radianos/segundo^2;
+var velocidadeFinal = 0; // radianos/segundo;
+var graus = 0; // graus;
 const timer = null;
 // desenhar os objetos no canvas através do contexto.
 function desenhar() {
@@ -16,7 +17,7 @@ function desenhar() {
         ctx.clearRect(0, 0, canvasWidth, canvasHeight);
         ctx.save(); 
         ctx.translate(canvasWidth / 2, canvasHeight / 2);
-        ctx.rotate(this.velocidadeFinal* (Math.PI / 180));
+        ctx.rotate(this.graus * (Math.PI / 180));
         ctx.fillStyle = "rgba(61, 165, 72, 0.4)";
         ctx.fillRect(0 - rectangleWidth / 2, 0 - rectangleHeight / 2, rectangleWidth, rectangleHeight);
         ctx.restore();
@@ -24,12 +25,8 @@ function desenhar() {
 }
 // atualizar o canvas e chamar a recursividade
 function atualizar() {
-
-    if (this.velocidadeFinal >= 360) {
-        this.velocidadeFinal -= 200;
-    } else if (this.velocidadeFinal < 360) {
-        this.velocidadeFinal += 0.5;
-    }
+    // aqui eu tenho que passar os graus
+    
     desenhar();
 }
 // iniciar o canvas para ativar o loop
